@@ -49,9 +49,11 @@ class Network():
         # Output is a vector of size out_size
         weights, biases = self.model
 
-        # Forward pass
+        if state.shape == (2, 1):
+            state = state.flatten()
+
         output = state
-        for weight, bias in zip(weights, biases):
+        for index, [weight, bias] in enumerate(zip(weights, biases)):
             output = np.matmul(output, weight) + bias
             output = self.leaky_relu(output)
 

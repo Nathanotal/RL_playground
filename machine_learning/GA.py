@@ -23,9 +23,9 @@ def genetic_algorithm(population_size, generations, in_size, out_size, layers, m
     for generation in range(generations):
         # Evaluate fitness
         if generation == generations - 1:
-            fitness = get_fitness(population, max_steps=250)
+            fitness = get_fitness(population, max_steps=2000)
         else:
-            fitness = get_fitness(population, max_steps=1000)
+            fitness = get_fitness(population, max_steps=2000)
 
         # Log best fitness of the generation
         best_fitness = max(fitness)

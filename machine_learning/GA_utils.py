@@ -2,6 +2,7 @@ import numpy as np
 from machine_learning.neural_network import Network
 import gym
 
+
 def mutate(network, mutation_rate=0.02, mutation_amount=0.05):
     weights, biases = network.model
     mutated_weights = []

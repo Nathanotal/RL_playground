@@ -1,5 +1,6 @@
 import gym
 from agents.machine_agent import MachineAgent
+import math
 
 
 def get_agent_score_mountaincar(agent, env, close_on_finish=True, n_trials=1, max_steps=5000):
@@ -9,12 +10,13 @@ def get_agent_score_mountaincar(agent, env, close_on_finish=True, n_trials=1, ma
     tot_score = 0
     for _ in range(n_trials):
         obs = env.reset()[0]
-        done = False
+        done, terminated = False, False
         score = 0
         steps = 0
-        while not done:
+        max_height = 0
+        while not done and not terminated:
             action = agent.get_action(obs)
-            obs, reward, done, info, _ = env.step(action)
+            obs, reward, terminated, done, info = env.step(action)
             score += reward
             steps += 1
             if steps > max_steps:
